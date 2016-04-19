@@ -1,0 +1,5 @@
+{
+  "require": {
+    "pimax/bitrix24-bot-php": "dev-master"
+  }
+}

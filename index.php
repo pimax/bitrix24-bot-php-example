@@ -12,6 +12,7 @@ $bot = new BotApp($_REQUEST["auth"]);
 
 switch($_REQUEST['event'])
 {
+    // Receive message from user
     case 'ONIMBOTMESSAGEADD':
         switch ($_REQUEST['data']['PARAMS']['MESSAGE'])
         {
@@ -29,6 +30,7 @@ switch($_REQUEST['event'])
         }
     break;
 
+    // Bot join to chat
     case 'ONIMBOTJOINCHAT':
         $bot->send(new Message("Hello", $_REQUEST['data']['PARAMS']['DIALOG_ID'], [
             new Message('[send=/command1]Command 1[/send]'),
@@ -37,10 +39,12 @@ switch($_REQUEST['event'])
         ]));
     break;
 
+    // Bot deleted
     case 'ONIMBOTDELETE':
         $bot->uninstall();
     break;
 
+    // Bot installed
     case 'ONAPPINSTALL':
         $bot->install(new Bot(
             $config['alias'],
