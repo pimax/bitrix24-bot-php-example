@@ -16,17 +16,24 @@ switch($_REQUEST['event'])
     case 'ONIMBOTMESSAGEADD':
         switch ($_REQUEST['data']['PARAMS']['MESSAGE'])
         {
-            case 'Command 1':
+            case '/command1':
                 $bot->send(new Message("Command 1 response", $_REQUEST['data']['PARAMS']['DIALOG_ID']));
             break;
 
-            case 'Command 2':
+            case '/command2':
                 $bot->send(new Message("Command 2 response", $_REQUEST['data']['PARAMS']['DIALOG_ID']));
             break;
 
-            case 'Command 3':
+            case '/command3':
                 $bot->send(new Message("Command 3 response", $_REQUEST['data']['PARAMS']['DIALOG_ID']));
             break;
+
+            default:
+                $bot->send(new Message("Hello", $_REQUEST['data']['PARAMS']['DIALOG_ID'], [
+                    new Message('[send=/command1]Command 1[/send]'),
+                    new Message('[send=/command2]Command 2[/send]'),
+                    new Message('[send=/command3]Command 3[/send]'),
+                ]));
         }
     break;
 
